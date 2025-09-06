@@ -2,11 +2,33 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Face Game</title>
-  <link rel="stylesheet" href="face.css">
+  <title>Face Game Launcher</title>
 </head>
 <body>
-  <!-- Your game will run here -->
-  <script src="face.js"></script>
+  <button id="openGame">Open in new tab</button>
+
+  <script>
+    document.getElementById("openGame").addEventListener("click", () => {
+      // Open a blank tab
+      let win = window.open("about:blank", "_blank");
+      let doc = win.document;
+
+      // Inject your CSS + JS into it
+      doc.write(`
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8">
+          <title>Face Game</title>
+          <link rel="stylesheet" href="face.css">
+        </head>
+        <body style="margin:0;background:black;">
+          <script src="face.js"><\/script>
+        </body>
+        </html>
+      `);
+      doc.close();
+    });
+  </script>
 </body>
 </html>
